@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/explosion-0.png-1fc9981b5480076e980ed0f310541
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

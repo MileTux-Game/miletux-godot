@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dtxe4vmts1xdd" path="res://src/levels/world1/levels/11-night_chill.tscn" id="13_3l541"]
 [ext_resource type="PackedScene" uid="uid://b05nxpprj8rja" path="res://src/levels/world1/levels/09-grumbels_sense_of_snow.tscn" id="13_4oh4b"]
 [ext_resource type="PackedScene" uid="uid://b4d3uvi4q6rjv" path="res://src/levels/world1/levels/12-into_stars.tscn" id="14_3l541"]
+[ext_resource type="PackedScene" uid="uid://b1876r3f3xt5h" path="res://src/levels/world1/levels/13-above_arctic_skies.tscn" id="14_ee0jv"]
 
 [node name="Worldmap" type="Node2D" unique_id=1039099861]
 z_index = 100
@@ -93,7 +94,7 @@ level_section = 5
 
 [node name="Level14" parent="." unique_id=821080446 instance=ExtResource("5_bjpkc")]
 position = Vector2(1152, 928)
-level_scene = ExtResource("12_5l04f")
+level_scene = ExtResource("14_ee0jv")
 level_name = "Above The Arctic Skies"
 level_section = 5
 
