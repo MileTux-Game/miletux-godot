@@ -79,8 +79,10 @@ func _on_something_exited(body):
 		Signals.update_level_text.emit()
 
 func _on_fade_finished():
+	Fade.finished.disconnect(_on_fade_finished)
 	Global.paused = false
-	get_tree().call_deferred("change_scene_to_packed", level_scene)
+	get_tree().call_deferred("change_scene_to_file", LevelStart.scene_file_path)
+	LevelStart.start_level(level_scene)
 
 func complete_level():
 	if not completed:

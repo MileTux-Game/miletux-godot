@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dnxcq2d1saxqu"]
+
+[ext_resource type="Texture2D" uid="uid://md2t5n2pk33u" path="res://data/images/background/arctis.png" id="1_5wy6u"]
+[ext_resource type="Script" uid="uid://cbeaf774ysmnx" path="res://src/transition/level_start.gd" id="1_tefhl"]
+[ext_resource type="FontFile" uid="uid://boltmv8cfep8v" path="res://data/fonts/SuperTux-Medium.ttf" id="2_tefhl"]
+[ext_resource type="SpriteFrames" uid="uid://cqviaxud38mcd" path="res://data/spriteframes/tux_levelstart.tres" id="4_o8fpv"]
+
+[node name="LevelStart" type="CanvasLayer" unique_id=1427080807]
+layer = 100
+script = ExtResource("1_tefhl")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2041341162]
+texture = ExtResource("1_5wy6u")
+centered = false
+
+[node name="BlackOverlay" type="ColorRect" parent="." unique_id=1526046833]
+modulate = Color(1, 1, 1, 0.6392157)
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="LevelName" type="RichTextLabel" parent="." unique_id=2129897536]
+offset_top = 224.0
+offset_right = 640.0
+offset_bottom = 256.0
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_tefhl")
+theme_override_font_sizes/normal_font_size = 24
+text = "Level Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelAuthor" type="RichTextLabel" parent="." unique_id=319833190]
+offset_left = 224.0
+offset_top = 256.0
+offset_right = 416.0
+offset_bottom = 288.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_tefhl")
+theme_override_font_sizes/normal_font_size = 14
+text = "Level Author"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tux" type="AnimatedSprite2D" parent="." unique_id=991656024]
+position = Vector2(320, 416)
+sprite_frames = ExtResource("4_o8fpv")
+animation = &"big"

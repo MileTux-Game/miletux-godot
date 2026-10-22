@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b4d3uvi4q6rjv" path="res://src/levels/world1/levels/12-into_stars.tscn" id="14_3l541"]
 
 [node name="Worldmap" type="Node2D" unique_id=1039099861]
-process_mode = 3
+z_index = 100
 script = ExtResource("1_571my")
 
 [node name="Water" type="TileMapLayer" parent="." unique_id=1592280583]

@@ -40,8 +40,6 @@ func _ready() -> void:
 	Fade.turn_invisible()
 	find_spawnpoint()
 	TuxManager.current_state = Global.tux_state
-	Music.stream = load(music)
-	Music.play()
 	Global.level_song = music
 	var hud_2 = hud.instantiate()
 	get_tree().current_scene.add_child(hud_2)
