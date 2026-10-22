@@ -444,13 +444,19 @@ func reload_player():
 		$SmallImage.visible = false
 		$BigImage.visible = false
 		$FireImage.visible = true
-		change_collision_shape(true)
+		if not duck:
+			change_collision_shape(true)
+		else:
+			print("Tux is ducking! Collision shape should not be changed :(")
 	elif TuxManager.current_state == TuxManager.TuxStates.BIG: # Big Tux
 		Global.tux_state = TuxManager.current_state
 		$SmallImage.visible = false
 		$BigImage.visible = true
 		$FireImage.visible = false
-		change_collision_shape(true)
+		if not duck:
+			change_collision_shape(true)
+		else:
+			print("Tux is ducking! Collision shape should not be changed :(")
 	elif TuxManager.current_state == TuxManager.TuxStates.SMALL: # small tux
 		Global.tux_state = TuxManager.current_state
 		$SmallImage.visible = true
