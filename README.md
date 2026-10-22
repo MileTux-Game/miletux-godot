@@ -1,5 +1,5 @@
 # MileTux - https://miletux-game.github.io/
-Last update: October 08, 2026
+Last update: October 22, 2026
 
 ## Description
 MileTux is a jump'n'run game meant to recreate old SuperTux's feel, using the old SuperTux assets and levels.
@@ -37,7 +37,7 @@ Other useful keys include the Esc key, which is used to pause levels and go back
 In the worldmap, the arrow keys are used to navigate and Enter to enter the current level.
 
 ## Development status
-v0.1.0 Alpha 2 has released with around 10 levels. Development is going along well on Milestone 1, although it may not continue using Godot but instead, HaxeFlixel (with a new collision system).
+v0.1.0 Alpha 2 has released with around 10 levels. Development is going along well on Milestone 1.
 
 ## The End
 Thanks for trying out MileTux.
