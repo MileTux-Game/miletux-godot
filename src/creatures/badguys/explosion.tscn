@@ -1,21 +1,9 @@
 [gd_scene format=3 uid="uid://c1f60rt3v56dc"]
 
 [ext_resource type="SpriteFrames" uid="uid://c2mjfiolugkie" path="res://data/spriteframes/explosion.tres" id="1_581wn"]
-[ext_resource type="Texture2D" uid="uid://dvwab7nhhwydu" path="res://data/images/particles/explosion-0.png" id="2_lapja"]
 [ext_resource type="Script" uid="uid://cx3to77rwcpp3" path="res://src/creatures/badguys/explosion.gd" id="2_mr817"]
-[ext_resource type="Texture2D" uid="uid://nnai26b1lov7" path="res://data/images/particles/explosion-1.png" id="3_eiwvd"]
 [ext_resource type="Texture2D" uid="uid://dcrmit4o3xemy" path="res://data/images/particles/explosion-2.png" id="4_mr817"]
 [ext_resource type="AudioStream" uid="uid://cd11xtohlqjt0" path="res://data/sounds/explode.ogg" id="6_ec5qn"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_dfipr"]
-frames = 3
-one_shot = true
-speed_scale = 10.0
-frame_0/texture = ExtResource("2_lapja")
-frame_1/texture = ExtResource("3_eiwvd")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("4_mr817")
-frame_2/duration = 1.0
 
 [sub_resource type="Gradient" id="Gradient_ec5qn"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -30,7 +18,7 @@ script = ExtResource("2_mr817")
 [node name="Particles" type="CPUParticles2D" parent="." unique_id=1652831094]
 emitting = false
 amount = 32
-texture = SubResource("AnimatedTexture_dfipr")
+texture = ExtResource("4_mr817")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0

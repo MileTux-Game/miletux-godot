@@ -178,12 +178,13 @@ process_material = SubResource("ParticleProcessMaterial_ji878")
 [node name="FireImage" type="AnimatedSprite2D" parent="." unique_id=264736650]
 visible = false
 sprite_frames = ExtResource("2_5ut1p")
-animation = &"stand"
+animation = &"walk"
 
 [node name="BigImage" type="AnimatedSprite2D" parent="." unique_id=921948789]
 visible = false
 sprite_frames = ExtResource("2_y7fy8")
-animation = &"stand"
+animation = &"walk"
+frame_progress = 0.7966077
 
 [node name="SmallImage" type="AnimatedSprite2D" parent="." unique_id=1111593641]
 position = Vector2(0, 16)

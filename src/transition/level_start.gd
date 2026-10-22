@@ -17,7 +17,7 @@ var music:String
 # Just making sure it's not visible when the game loads...
 func _ready() -> void:
 	visible = false
-	set_tux_animation()
+	set_tux_animation() # Set Tux's animation (despite start_level doing this)
 
 func start_level(level:PackedScene):
 	# Check if the level is null, if it is, return :)
@@ -25,7 +25,8 @@ func start_level(level:PackedScene):
 		print("level is null... returning!")
 		return
 	
-	print("Levelstart called")
+	# Set Tux's animation
+	set_tux_animation()
 	
 	# Set level_variable to level just so exiting this screen can be done
 	level_variable = level

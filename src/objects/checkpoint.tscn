@@ -1,21 +1,9 @@
 [gd_scene format=3 uid="uid://cgevbinru2wi2"]
 
 [ext_resource type="SpriteFrames" uid="uid://c2qkmn1p7vqk4" path="res://data/spriteframes/checkpoint.tres" id="1_v6vvy"]
-[ext_resource type="Texture2D" uid="uid://dvwab7nhhwydu" path="res://data/images/particles/explosion-0.png" id="2_ency0"]
 [ext_resource type="Script" uid="uid://ih7xt30husav" path="res://src/objects/checkpoint.gd" id="2_uq8gs"]
-[ext_resource type="Texture2D" uid="uid://nnai26b1lov7" path="res://data/images/particles/explosion-1.png" id="3_uq8gs"]
 [ext_resource type="Texture2D" uid="uid://dcrmit4o3xemy" path="res://data/images/particles/explosion-2.png" id="4_kugom"]
 [ext_resource type="AudioStream" uid="uid://cx2tob8x0q3mm" path="res://data/sounds/savebell.wav" id="6_uq8gs"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_raacg"]
-frames = 3
-one_shot = true
-speed_scale = 10.0
-frame_0/texture = ExtResource("2_ency0")
-frame_1/texture = ExtResource("3_uq8gs")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("4_kugom")
-frame_2/duration = 1.0
 
 [sub_resource type="Gradient" id="Gradient_kecgm"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -33,7 +21,7 @@ script = ExtResource("2_uq8gs")
 [node name="Particles" type="CPUParticles2D" parent="." unique_id=1437767156]
 emitting = false
 amount = 12
-texture = SubResource("AnimatedTexture_raacg")
+texture = ExtResource("4_kugom")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0

@@ -55,4 +55,4 @@ vertical_alignment = 1
 [node name="Tux" type="AnimatedSprite2D" parent="." unique_id=991656024]
 position = Vector2(320, 416)
 sprite_frames = ExtResource("4_o8fpv")
-animation = &"big"
+animation = &"small"

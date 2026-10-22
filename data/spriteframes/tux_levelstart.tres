@@ -44,7 +44,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"big",
-"speed": 12.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -67,7 +67,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"fire",
-"speed": 12.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -96,5 +96,5 @@ animations = [{
 }],
 "loop": 1,
 "name": &"small",
-"speed": 12.0
+"speed": 15.0
 }]
