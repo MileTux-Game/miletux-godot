@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5x6tk7qn7m2o"
-path="res://.godot/imported/walk-3.png-20e88125c66039f467c45b2b97e1bef7.ctex"
+uid="uid://bc3rxjbqgkyrr"
+path="res://.godot/imported/cloud.png-7700dc6473def1a45c72fefd687a16d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/images/creatures/tux/fire/walk-3.png"
-dest_files=["res://.godot/imported/walk-3.png-20e88125c66039f467c45b2b97e1bef7.ctex"]
+source_file="res://data/images/particles/cloud.png"
+dest_files=["res://.godot/imported/cloud.png-7700dc6473def1a45c72fefd687a16d1.ctex"]
 
 [params]
 

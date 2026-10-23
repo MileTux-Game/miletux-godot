@@ -69,7 +69,7 @@ func _on_dd_body_entered(body):
 	if Global.paused:
 		return
 	
-	if body.is_in_group("Player") and not empty and body.velocity.y >= 0:
+	if body.is_in_group("Player") and not empty and body.velocity.y <= 0:
 		if body.previous_position.y <= global_position.y:
 			return
 		

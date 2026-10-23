@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhjgd4oianlfl" path="res://src/global/camera.tscn" id="5_pti6y"]
 [ext_resource type="PackedScene" uid="uid://b340k12byw0ja" path="res://src/objects/tux_spawnpoint.tscn" id="6_47fkn"]
 [ext_resource type="PackedScene" uid="uid://dvlpk0qaxboou" path="res://src/particles/level/snow.tscn" id="7_5ek4s"]
+[ext_resource type="PackedScene" uid="uid://dk278yw41w88b" path="res://src/particles/level/clouds.tscn" id="7_22ij1"]
 [ext_resource type="PackedScene" uid="uid://c1cy1acdggjuq" path="res://src/objects/bonus_block.tscn" id="8_c5ur4"]
 [ext_resource type="PackedScene" uid="uid://cgevbinru2wi2" path="res://src/objects/checkpoint.tscn" id="9_owypa"]
 [ext_resource type="PackedScene" uid="uid://bov86ofhwnhpq" path="res://src/objects/goal.tscn" id="10_1174p"]
@@ -31,6 +32,7 @@ music = "uid://dtophyuf3d8mx"
 width = 290
 level_name = "Above The Arctic Skies"
 level_creator = "SuperTux Team"
+clouds = true
 
 [node name="BackgroundImage" type="Parallax2D" parent="." unique_id=59847617]
 z_index = -300
@@ -67,6 +69,9 @@ position = Vector2(79, 391)
 position = Vector2(96, 352)
 
 [node name="Snow" parent="." unique_id=2033506817 instance=ExtResource("7_5ek4s")]
+visible = false
+
+[node name="Clouds" parent="." unique_id=1783740154 instance=ExtResource("7_22ij1")]
 visible = false
 
 [node name="BonusBlock" parent="." unique_id=368355438 instance=ExtResource("8_c5ur4")]

@@ -74,10 +74,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_something_detected(body):
-	if body.is_in_group("Badguy") and body.flammable and not Global.paused:
-		if body is Iceblock:
-			body.death_fall(true)
-		else:
-			body.death_fall(false)
+	if body.is_in_group("Badguy") and not Global.paused:
+		if body.flammable and body.current_state == Badguy.BadguyStates.ALIVE:
+			if body is Iceblock:
+				body.death_fall(true)
+			else:
+				body.death_fall(false)
 		
-		queue_free()
+			queue_free()

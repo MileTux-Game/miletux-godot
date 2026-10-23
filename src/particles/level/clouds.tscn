@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dk278yw41w88b"]
+
+[ext_resource type="Texture2D" uid="uid://bc3rxjbqgkyrr" path="res://data/images/particles/cloud.png" id="1_yfiy2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hg2jf"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(760, 240, 0)
+emission_shape_scale = Vector3(16, 300, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 64.0
+initial_velocity_max = 96.0
+gravity = Vector3(0, 0, 0)
+
+[node name="Clouds" type="Node2D" unique_id=2021084665]
+z_index = -200
+
+[node name="Particles" type="GPUParticles2D" parent="." unique_id=1783740154]
+amount = 32
+texture = ExtResource("1_yfiy2")
+lifetime = 30.0
+visibility_rect = Rect2(0, 0, 640, 480)
+process_material = SubResource("ParticleProcessMaterial_hg2jf")

@@ -33,6 +33,7 @@ class_name Level
 @export var autoscroll_speed = 80
 
 @export var snow = false
+@export var clouds = false
 
 const hud = preload("res://src/hud/hud.tscn")
 
@@ -57,6 +58,10 @@ func _ready() -> void:
 		if not get_node_or_null("Snow") == null:
 			$Snow.visible = true
 			$Snow.global_position.x = $Camera.global_position.x
+	if clouds:
+		if not get_node_or_null("Clouds") == null:
+			$Clouds.visible = true
+			$Clouds.global_position.x = $Camera.global_position.x
 
 func find_spawnpoint():
 	if not Global.checkpoint_reached or Global.coins <= 25:
@@ -86,8 +91,10 @@ func _physics_process(delta: float) -> void:
 	
 	if snow:
 		if not get_node_or_null("Snow") == null:
-			$Snow.visible = true
 			$Snow.global_position.x = $Camera.global_position.x
+	if clouds:
+		if not get_node_or_null("Clouds") == null:
+			$Clouds.global_position.x = $Camera.global_position.x
 
 func _on_level_finished():
 	Global.paused = false

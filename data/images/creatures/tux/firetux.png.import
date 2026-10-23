@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr4e67u7dwuwe"
-path="res://.godot/imported/walk-1.png-6cf19b82832a8306820c4bdcf223ba2f.ctex"
+uid="uid://do71hph4vgfvx"
+path="res://.godot/imported/firetux.png-1e8beb355c2c3e31d83455d2deebddeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/images/creatures/tux/big/walk-1.png"
-dest_files=["res://.godot/imported/walk-1.png-6cf19b82832a8306820c4bdcf223ba2f.ctex"]
+source_file="res://data/images/creatures/tux/firetux.png"
+dest_files=["res://.godot/imported/firetux.png-1e8beb355c2c3e31d83455d2deebddeb.ctex"]
 
 [params]
 
