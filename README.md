@@ -1,5 +1,5 @@
 # MileTux - https://miletux-game.github.io/
-Last update: October 22, 2026
+Last update: October 23, 2026
 
 ## Description
 MileTux is a jump'n'run game meant to recreate old SuperTux's feel, using the old SuperTux assets and levels.
@@ -11,8 +11,7 @@ While it's not intended to be completely accurate to SuperTux, it's meant to rec
 It will also include new worlds.
 
 ### License Information
-For copyright headers in source code files, they are based on the SuperTux version of the thing just to be safe. Just because someone's name / username is in there, doesn't mean that they worked on the MileTux version of the file, unless the year of the copyright text is
-2026 or higher. For more information, check commits.
+For copyright headers in source code files, they are based on the SuperTux version of the thing just to be safe. Just because someone's name / username is in there, doesn't mean that they worked on the MileTux version of the file, unless the year of the copyright text is 2026 or higher. For more information, check commits.
 
 ## Story: Penny gets captured!
 Tux and Penny were out having a nice picnic on the ice fields of Antarctica. Suddenly, a creature jumped from behind an ice bush, there was a flash, and Tux fell unconscious!
@@ -24,7 +23,7 @@ Tux looks and sees Nolok's fortress in the distance. Determined to save his belo
 ## Documentation
 Important documentation for MileTux is located in the wiki (https://miletux.miraheze.org/wiki/Main_Page) for Players, Developers and Modders! You can read those if you want.
 
-The GitHub wiki for this repository is considered "deprecated" and no longer has up-to-date information. It's recommended that you view the miraheze wiki instead.
+The GitHub wiki for this repository is considered "deprecated" and no longer has up-to-date information. It's recommended that you view the Miraheze wiki instead.
 
 ## Running the game
 Currently, there is no complete release of this game. However, if you have a GitHub account, you can go to the Actions tab of the repository to get a "nightly" build of the game for your platform (Windows, Mac or Linux). Please be aware that those builds may be unstable, although if you want to report a bug, you should make sure it's reproducible on the latest nightly build.
@@ -37,7 +36,7 @@ Other useful keys include the Esc key, which is used to pause levels and go back
 In the worldmap, the arrow keys are used to navigate and Enter to enter the current level.
 
 ## Development status
-v0.1.0 Alpha 2 has released with around 10 levels. Development is going along well on Milestone 1.
+v0.1.0 Beta 1 has released with around 13 levels. Development is going along well on Milestone 1.
 
 ## The End
 Thanks for trying out MileTux.
