@@ -20,37 +20,85 @@ class_name FlyingSnowball
 # You should've received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 
-var fly_speed = 100 # Speed of Flying Snowball
-var fly_direction = 1 # 1 = up, -1 = down
+var flight_tween:Tween
+var tween_paused = false
+var finished_starting_move = false # I dont even know what im doing anymore
 
 func _ready() -> void:
 	$TuxDetector.connect("area_entered", _on_tux_detector_area_entered)
 	$TuxDetector.connect("body_entered", _on_tux_detector_body_entered)
-	$DirectionChange.connect("timeout", _on_dc_timeout)
 	$Image.play("flying")
-	velocity.y = -fly_speed
-	fly_direction = 1
-	$DirectionChange.start(0.5)
+	move()
 	super()
 
 func _physics_process(delta: float) -> void:
+	if current_state == BadguyStates.DEAD:
+		stop_flight_tween()
+	
 	if Global.paused:
-		velocity.x = 0
-		velocity.y = 0
+		velocity = Vector2.ZERO
 		return
 	
-	if not is_on_floor() and current_state == BadguyStates.DEAD:
-		velocity += get_gravity() * delta
+	if current_state == BadguyStates.DEAD:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		
+		move_and_slide()
+	else:
+		velocity.y = 0
 	
 	if direction == 1:
 		$Image.flip_h = true
 	else:
 		$Image.flip_h = false
-	
-	move_and_slide()
 
 func flip_direction():
 	direction = -direction
+
+func move():
+	if current_state == BadguyStates.DEAD:
+		return
+	
+	var start_pos = global_position
+	var tween = create_tween()
+	flight_tween = tween
+	
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_method(move_to_tween_position, start_pos, start_pos + Vector2(0, -64), 0.75)
+	
+	await tween.finished
+	
+	if current_state == BadguyStates.DEAD:
+		return
+	
+	var tween_2 = create_tween()
+	flight_tween = tween_2
+	tween_2.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween_2.set_trans(Tween.TRANS_SINE)
+	tween_2.set_ease(Tween.EASE_IN_OUT)
+	tween_2.set_loops()
+	
+	tween_2.tween_method(move_to_tween_position, start_pos + Vector2(0, -64), start_pos + Vector2(0, 64), 1.5)
+	tween_2.tween_method(move_to_tween_position, start_pos + Vector2(0, 64), start_pos + Vector2(0, -64), 1.5)
+
+func move_to_tween_position(target: Vector2):
+	if current_state == BadguyStates.DEAD:
+		stop_flight_tween()
+		return
+	
+	var motion = target - global_position
+	
+	if not motion.is_zero_approx():
+		move_and_collide(motion)
+
+func stop_flight_tween():
+	if flight_tween != null and flight_tween.is_valid():
+		flight_tween.kill()
+	
+	flight_tween = null
 
 func _on_tux_detector_area_entered(area):
 	if Global.paused:
@@ -63,7 +111,7 @@ func _on_tux_detector_area_entered(area):
 		if not Global.tux_star_invincible:
 			if get_tux_stomp(area.get_parent(), true):
 				bouncybouncebouncingsnowball = true
-				area.get_parent().position.y -= 1 # i hate flying snowballs
+				area.get_parent().position.y -= 1
 				$TuxDetector.set_deferred("monitoring", false)
 				area.get_parent().stomp_bounce()
 				death_squish()
@@ -85,15 +133,6 @@ func _on_tux_detector_body_entered(body):
 				death_fall(false)
 			if body.kill_self_on_touching_enemy:
 				body.death_fall(true)
-
-func _on_dc_timeout():
-	if current_state == BadguyStates.DEAD or Global.paused:
-		return
-	
-	fly_direction *= -1
-	velocity.y = -fly_speed * fly_direction
-	
-	$DirectionChange.start(1.0)
 
 func death_squish():
 	if current_state == BadguyStates.DEAD or Global.paused:
