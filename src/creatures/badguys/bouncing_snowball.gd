@@ -122,5 +122,7 @@ func interact(tux, area:bool):
 	else:
 		if not Global.tux_star_invincible and not get_tux_stomp(tux, false):
 			held_badguy_check(true, tux)
-		else:
+		elif not Global.tux_star_invincible and get_tux_stomp(tux, false):
 			death_squish()
+		elif Global.tux_star_invincible:
+			death_fall(false)
