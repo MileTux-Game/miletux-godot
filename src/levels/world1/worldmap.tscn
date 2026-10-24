@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b05nxpprj8rja" path="res://src/levels/world1/levels/09-grumbels_sense_of_snow.tscn" id="13_4oh4b"]
 [ext_resource type="PackedScene" uid="uid://b4d3uvi4q6rjv" path="res://src/levels/world1/levels/12-into_stars.tscn" id="14_3l541"]
 [ext_resource type="PackedScene" uid="uid://b1876r3f3xt5h" path="res://src/levels/world1/levels/13-above_arctic_skies.tscn" id="14_ee0jv"]
+[ext_resource type="PackedScene" uid="uid://bialsr4vjx0db" path="res://src/levels/world1/levels/14-entrance_cave.tscn" id="15_alcsj"]
 
 [node name="Worldmap" type="Node2D" unique_id=1039099861]
 z_index = 100
@@ -93,10 +94,16 @@ level_name = "Night Chill"
 level_section = 5
 
 [node name="Level14" parent="." unique_id=821080446 instance=ExtResource("5_bjpkc")]
-position = Vector2(1152, 928)
+position = Vector2(1120, 928)
 level_scene = ExtResource("14_ee0jv")
 level_name = "Above The Arctic Skies"
 level_section = 5
+
+[node name="Level15" parent="." unique_id=2142781384 instance=ExtResource("5_bjpkc")]
+position = Vector2(1248, 928)
+level_scene = ExtResource("15_alcsj")
+level_name = "Entrance To The Cave"
+level_section = 6
 
 [node name="Level13" parent="." unique_id=1674428801 instance=ExtResource("5_bjpkc")]
 position = Vector2(480, 1024)
@@ -140,3 +147,7 @@ rock_section = 4
 [node name="Rock5" parent="." unique_id=1154390367 instance=ExtResource("7_0cvpb")]
 position = Vector2(1184, 928)
 rock_section = 5
+
+[node name="Rock6" parent="." unique_id=474145805 instance=ExtResource("7_0cvpb")]
+position = Vector2(1312, 928)
+rock_section = 6

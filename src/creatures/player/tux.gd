@@ -23,8 +23,8 @@ extends CharacterBody2D
 @export var walk_acceleration = 300
 @export var run_acceleration = 400
 var current_acceleration = 0 # Don't change this! It's automatically set later!
-@export var min_jump_height = 512.0 # I turned it into a float. Why? Integer division. Decimal part will be discarded. That's why. (Realized I could get around that with "* 0.5", but it's too late to change that...
-@export var max_jump_height = 576
+@export var min_jump_height = 520.0 # I turned it into a float. Why? Integer division. Decimal part will be discarded. That's why. (Realized I could get around that with "* 0.5", but it's too late to change that...
+@export var max_jump_height = 580
 @export var walk_speed = 230
 var speed = 0 # Don't change this! It's automatically set later!
 @export var run_speed = 320
