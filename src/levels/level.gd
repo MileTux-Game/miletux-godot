@@ -21,6 +21,8 @@ class_name Level
 # You should've received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 
+var last_tux_x = 0.0 # float
+
 @export_file("*.ogg") var music = "res://data/music/chipdisko.ogg"
 
 @export var width = 100
@@ -49,11 +51,16 @@ func _ready() -> void:
 	$Camera.limit_top = 0
 	$Camera.limit_bottom = 480
 	$Camera.limit_right = Global.level_width
+	
 	if manual_camera:
 		$Camera.global_position.x = get_window().size.x * 0.5
 	else:
 		$Camera.global_position = $Tux.global_position
+	
 	Signals.connect("level_finished", _on_level_finished)
+	
+	last_tux_x = $Tux.global_position.x
+	
 	if snow:
 		if not get_node_or_null("Snow") == null:
 			$Snow.visible = true
@@ -78,14 +85,13 @@ func _physics_process(delta: float) -> void:
 	# TODO: Move this code to the camera's script.
 	if not get_node_or_null("Tux") == null:
 		if not manual_camera:
-			if abs($Tux.get_real_velocity().x) > 15.0:
-				# using get_real_velocity().x fixes an issue where the camera 
-				# would extend while tux was running and jumping at a wall
-				var target_look_ahead = sign($Tux.get_real_velocity().x) * $Camera.look_ahead
-				$Camera.current_look_ahead = move_toward($Camera.current_look_ahead, target_look_ahead, 360 * delta)
-				
-				var target_x = $Tux.global_position.x + $Camera.current_look_ahead
-				$Camera.global_position.x = move_toward($Camera.global_position.x, target_x, 360 * delta)
+			var player_delta_x = $Tux.global_position.x - last_tux_x
+			last_tux_x = $Tux.global_position.x
+			
+			var max_look_ahead = minf(maxf($Camera.look_ahead, 0.0), get_viewport_rect().size.x * 0.1)
+			
+			$Camera.current_look_ahead = clampf($Camera.current_look_ahead + player_delta_x * 0.8, -max_look_ahead, max_look_ahead)
+			$Camera.global_position.x = ($Tux.global_position.x + $Camera.current_look_ahead)
 		else:
 			$Camera.global_position.x += autoscroll_speed * delta
 	
