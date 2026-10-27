@@ -48,7 +48,7 @@ var holding_enemy = false
 
 # Damage
 var can_take_damage = true
-var inv_frames = 2.0 # TODO: rename to inv_seconds. since it's not frames.
+var inv_seconds = 2.0
 var dead = false
 @export var dead_jump = 700
 @export var restart_scene_timer = 3.0
@@ -58,7 +58,7 @@ var in_cutscene = false
 var auto_walk = false
 var auto_walk_speed = 0 # Don't change this! It's automatically set by the things that set auto_walk to true!
 
-# Firebals
+# Fireballs
 @export var max_fireballs_allowed = 2
 
 # Music
@@ -82,7 +82,6 @@ const fire_bullet_scene = preload("res://src/creatures/player/firebullet.tscn")
 @onready var stomp_collision = $Stomp/CollisionShape2D
 @onready var collision = $Collision
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reload_player()
 	play_animation("stand")
@@ -91,11 +90,10 @@ func _ready() -> void:
 	$Stomp.add_to_group("Stomp")
 	$StarTimer.connect("timeout", _on_star_timer_timeout)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	previous_position = global_position
 	
-	# If Tux is not in a cutscene and the game is not paused, stop Tux from going out of bounds through the left of the level.
+	# If Tux is not in a cutscene and the game is not paused, stop Tux from going out of bounds through the left of the level
 	if not in_cutscene or not Global.paused:
 		if global_position.x < 0:
 			global_position.x = 0
@@ -105,12 +103,12 @@ func _physics_process(delta: float) -> void:
 		if global_position.y > get_window().size.y:
 			die()
 	
-	# If Tux is not in a cutscene and the game is not paused, stop Tux from going out of bounds through the right of the level.
+	# If Tux is not in a cutscene and the game is not paused, stop Tux from going out of bounds through the right of the level
 	if not in_cutscene or not Global.paused:
 		if global_position.x > Global.level_width - $Collision.shape.size.x:
 			global_position.x = Global.level_width - $Collision.shape.size.x
 	
-	# If the game is not paused, do gravity stuff (with a few extra checks inside here), if the game is paused, set velocity.y to 0.
+	# If the game is not paused, do gravity stuff (with a few extra checks inside here), if the game is paused, set velocity.y to 0
 	if not Global.paused:
 		if (not is_on_floor() and $TileTimer.is_stopped()) or dead: # If Tux isn't on the floor, the tile timer isn't going or Tux is dead, add gravity!
 			velocity += get_gravity() * delta
@@ -119,8 +117,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 	
-	# If Tux isn't dead and is not in a cutscene, move. If the game is not paused, allow Tux to shoot fire. 
-	# Also Tux is allowed to do animate function if not dead.
+	# If Tux isn't dead and is not in a cutscene, move. If the game is not paused, allow Tux to shoot fire.
+	# Also Tux is allowed to do animate function if not dead
 	if not dead:
 		if not in_cutscene:
 			move() # Has a return just in case Global.paused is true, that's why there's no "if not Global.paused"
@@ -129,7 +127,7 @@ func _physics_process(delta: float) -> void:
 		animate()
 	
 	# Small check to make sure the correct star particles are emitting when Tux is damaged / grows while he
-	# has the star power-up.
+	# has the star power-up
 	if Global.tux_star_invincible:
 		if TuxManager.current_state == TuxManager.TuxStates.SMALL:
 			if $LargeStars.emitting:
@@ -140,16 +138,16 @@ func _physics_process(delta: float) -> void:
 				$SmallStars.emitting = false
 				$LargeStars.emitting = true
 	
-	# If the game is not paused, allow Tux to throw the object he's holding.
+	# If the game is not paused, allow Tux to throw the object he's holding
 	if not Global.paused:
 		if Input.is_action_just_released("player_action") and not held_object == null and not held_object.held_by == null:
 			throw_object()
 	
-	# If Tux is in a cutscene, force Tux to throw the object he's holding.
+	# If Tux is in a cutscene, force Tux to throw the object he's holding
 	if in_cutscene and not held_object == null and not held_object.held_by == null:
 		throw_object()
 	
-	# Cancels the death transition thing.
+	# Cancels the death transition thing
 	if dead and Input.is_action_just_pressed("menu_exit"):
 		get_tree().call_deferred("reload_current_scene")
 		Fade.turn_invisible()
@@ -157,51 +155,51 @@ func _physics_process(delta: float) -> void:
 	# Never understood why Godot forces this function to be called to make the player move...
 	move_and_slide()
 	
-	# If was on floor, but not on floor now and Tux hasn't jumped, start Coyote Timer and Tile Timer.
+	# If was on floor, but not on floor now and Tux hasn't jumped, start Coyote Timer and Tile Timer
 	if was_on_floor and not is_on_floor() and not Input.is_action_just_pressed("player_jump"):
 		$CoyoteTimer.start()
 		$TileTimer.start()
 
-# He's dead.
+# He's dead
 func die():
 	# If Tux is already, dead, return!
 	if dead:
 		return
 	
-	# Set dead to true.
+	# Set dead to true
 	dead = true
 	
 	# This is for later!
 	TuxManager.current_state = TuxManager.TuxStates.SMALL
 	
-	# If Tux is invincible through the power of the stars, remove that invincibility.
+	# If Tux is invincible through the power of the stars, remove that invincibility
 	if Global.tux_star_invincible:
 		remove_star()
 	
-	# Stop Tux's velocity.x and make him do the dead jump.
+	# Stop Tux's velocity.x and make him do the dead jump
 	velocity.x = 0
 	velocity.y = -dead_jump
 	
-	# Play hurt sound.
+	# Play hurt sound
 	$Hurt.play()
 	
-	# Set Small Tux image to visible, everything else can be invisible.
+	# Set Small Tux image to visible, everything else can be invisible
 	$SmallImage.visible = true
 	$BigImage.visible = false
 	$FireImage.visible = false
 	
-	# Play the dead animation.
+	# Play the dead animation
 	# Reason why it's not play_animation() or whatever I called it: This only sets Small Tux's animation,
-	# which makes it not need that function.
+	# which makes it not need that function
 	$SmallImage.play("dead")
 	
-	# Stop Tux from colliding which basically any solid object, including enemies.
+	# Stop Tux from colliding which basically any solid object, including enemies
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(9, false)
 	set_collision_mask_value(2, false)
 	set_collision_mask_value(4, false)
 	
-	# Stop Tux from stomping enemies.
+	# Stop Tux from stomping enemies
 	$Stomp.set_deferred("monitorable", false)
 	$Stomp.set_deferred("monitoring", false)
 	
@@ -212,9 +210,12 @@ func die():
 	
 	# do the funny little fade
 	Fade.fade_in(0.33)
-	# Await restart_scene_timer before reloading scene.
+	
+	# Await restart_scene_timer before reloading scene
 	await get_tree().create_timer(restart_scene_timer).timeout
 	get_tree().call_deferred("reload_current_scene")
+	
+	# Turn fade invisible to fix a bug I think? (it's been a while since this was added)
 	Fade.turn_invisible()
 
 # Very fun!
@@ -227,46 +228,36 @@ func move():
 	# Set was_on_floor.
 	was_on_floor = is_on_floor()
 	
-	# If player is pressing the "action" action, give Tux the ability to run. If player isn't doing that, stop Tux from being able to run.
-	#if Input.is_action_pressed("player_action"):
-		#speed = run_speed
-		#instant_speed = instant_run_speed
-		#current_acceleration = run_acceleration
-	#else:
-		#speed = walk_speed
-		#instant_speed = instant_walk_speed
-		#current_acceleration = walk_acceleration
-	
-	# Nevermind
+	# Nevermind (make these the default values at some point?)
 	speed = run_speed
 	instant_speed = instant_run_speed
 	current_acceleration = run_acceleration
 	
-	# Duck On Floor variable! Used later.
+	# Duck On Floor variable! Used later
 	var duck_on_floor = duck and is_on_floor()
 	
 	# Later = Right now
 	if not duck_on_floor:
 		var move_direction = 0
 		
-		# Player moving left / right stuff! How fun.
+		# Player moving left / right stuff! How fun
 		if Input.is_action_pressed("player_left") and not Input.is_action_pressed("player_right"):
 			move_direction = -1
 			TuxManager.direction = -1
-			change_image_direction(-1) # Just so there isn't 3 "flip_h" functions here. Should this be in animate()?
+			change_image_direction(-1) # Just so there isn't 3 "flip_h" functions here
 		elif Input.is_action_pressed("player_right") and not Input.is_action_pressed("player_left"):
 			move_direction = 1
 			TuxManager.direction = 1
-			change_image_direction(1) # Also just so there isn't 3 "flip_h" functions here. Should this be in animate()?
+			change_image_direction(1) # Also just so there isn't 3 "flip_h" functions here
 		
-		# If the move direction is not 0, do actual move stuff.
+		# If the move direction is not 0, do actual move stuff
 		if not move_direction == 0:
 			# If velocity.x is below instant_speed, apply instant_speed!
 			if abs(velocity.x) < instant_speed:
 				velocity.x = move_direction * instant_speed
 			
 			# Acceleration. Because this is code ported from the old HaxeFlixel version of this game,
-			# it needs an acceleration variable thing.
+			# it needs an acceleration variable thing
 			var acceleration = (current_acceleration * get_physics_process_delta_time())
 			
 			# Actually set the speed
@@ -318,7 +309,7 @@ func move():
 			if not $CeilingDetector.has_overlapping_bodies():
 				duck = false
 				change_collision_shape(true)
-	else: # Thank god I don't have to see all that stuff above. Anyways, duck = false. Obviously.
+	else: # Thank god I don't have to see all that stuff above. Anyways, duck = false. Obviously
 		duck = false
 	
 	# Used very soon
@@ -327,11 +318,11 @@ func move():
 	# Jumping!
 	if Input.is_action_just_pressed("player_jump") and on_floor_or_coyote:
 		# SuperTux (at least the versions I've checked) don't actually
-		# use Tux's max jump height and minimum jump height for this.
+		# use Tux's max jump height and minimum jump height for this
 		if abs(velocity.x) > walk_speed:
-			velocity.y = -max_jump_height
+			velocity.y = -max_jump_height # aka 580
 		else:
-			velocity.y = -min_jump_height
+			velocity.y = -min_jump_height # aka 520
 		
 		# What sound should I play...
 		if TuxManager.current_state == TuxManager.TuxStates.SMALL:
@@ -339,16 +330,13 @@ func move():
 		else:
 			$BigJump.play()
 	
-	# Variable jump height.
+	# Variable jump height
 	if velocity.y < 0 and Input.is_action_just_released("player_jump"):
 		velocity.y = 0
 
 # Animating!
 func animate():
-	if Global.paused: # TODO: Remove later.
-		return
-	
-	# If not ducking and not skidding, do stand / walk / jump animation stuff.
+	# If not ducking and not skidding, do stand / walk / jump animation stuff
 	if not duck and not skid:
 		if (velocity.x == 0 or is_on_wall()) and is_on_floor():
 			play_animation("stand")
@@ -356,7 +344,7 @@ func animate():
 			play_animation("walk")
 		if not is_on_floor():
 			play_animation("jump")
-	elif duck and not skid: # This isn't play_animation("duck") because Small Tux cannot duck.
+	elif duck and not skid: # This isn't play_animation("duck") because Small Tux cannot duck
 		$BigImage.play("duck")
 		$FireImage.play("duck")
 	elif skid and not duck: # If skidding but not ducking, play skid animation. Why is the sound thing here? Because I don't care anymore, that's why!
@@ -364,7 +352,7 @@ func animate():
 			play_animation("skid")
 			$Skid.play()
 
-# Badguys use this for Tux stomping on them.
+# Badguys use this for Tux stomping on them
 func stomp_bounce():
 	if Input.is_action_pressed("player_jump"):
 		velocity.y = -min_jump_height
@@ -372,7 +360,7 @@ func stomp_bounce():
 		velocity.y = -min_jump_height / 2
 
 func damage():
-	# Two if statements for returning as I don't want to make the if statements too long, otherwise, it'd be weird. I guess.
+	# Two if statements for returning as I don't want to make the if statements too long, otherwise, it'd be weird. I guess
 	if in_cutscene or Global.paused:
 		return
 	
@@ -392,13 +380,13 @@ func damage():
 	elif TuxManager.current_state == TuxManager.TuxStates.SMALL:
 		die() # Don't play hurt sound, since die() does that. Don't play flicker either. Also, Tux dies :(
 	reload_player()
-	await get_tree().create_timer(inv_frames).timeout # TODO: rename inv_frames to inv_seconds
+	await get_tree().create_timer(inv_seconds).timeout
 	# And finally, Tux can take damage again!
 	$Animation.play("RESET")
 	can_take_damage = true
 
 func hold_object(object):
-	# Don't hold object if the held object isn't null, or if Tux is in a cutscene or if the game is paused.
+	# Don't hold object if the held object isn't null, or if Tux is in a cutscene or if the game is paused
 	if not held_object == null or in_cutscene or Global.paused:
 		return
 	
@@ -407,7 +395,7 @@ func hold_object(object):
 	object.pick_up(self)
 
 func throw_object():
-	if held_object == null or Global.paused: # Even though this should never happen if Global.paused, it's best to be safe.
+	if held_object == null or Global.paused: # Even though this should never happen if Global.paused, it's best to be safe
 		return
 	
 	held_object.throw()
@@ -434,7 +422,7 @@ func grow(powerup:String):
 	else:
 		print(powerup + " is not a valid powerup.")
 
-# This function is actually a copy of a function in the book "Discover HaxeFlixel"!
+# This function is actually a copy of a function in the book "Discover HaxeFlixel"
 func reload_player():
 	if TuxManager.current_state == TuxManager.TuxStates.FIRE: # FIRE TUX
 		Global.tux_state = TuxManager.current_state
@@ -475,7 +463,7 @@ func get_star():
 	Music.play()
 	$StarTimer.start()
 
-# Used by the goal.
+# Used by the goal
 func get_star_lite():
 	Global.tux_star_invincible = true
 	if TuxManager.current_state == TuxManager.TuxStates.SMALL:
@@ -483,7 +471,7 @@ func get_star_lite():
 	else:
 		$LargeStars.emitting = true
 
-# Stops star music, used by the goal.
+# Stops star music, used by the goal
 func stop_star_music():
 	Music.stream = load(Global.level_song)
 	Music.play()
@@ -514,7 +502,7 @@ func shoot_fire():
 func _on_star_timer_timeout():
 	remove_star() # Could move the remove_star function stuff here... hmmm...
 
-# Just so I don't write 1000000 lines of code.
+# Just so I don't write 1000000 lines of code
 func change_collision_shape(big:bool):
 	if big:
 		$Collision.shape.size.y = big_collision_size_y
@@ -525,7 +513,7 @@ func change_collision_shape(big:bool):
 		$Collision.position.y = small_collision_position_y
 		$CeilingDetector/CollisionShape2D.position.y = 9.5
 
-# Just so I don't write 1000000 lines of code.
+# Just so I don't write 1000000 lines of code
 func change_image_direction(direction:int):
 	if direction == -1:
 		$SmallImage.flip_h = true
@@ -536,12 +524,12 @@ func change_image_direction(direction:int):
 		$BigImage.flip_h = false
 		$FireImage.flip_h = false
 
-# Just so I don't write 1000000 lines of code.
+# Just so I don't write 1000000 lines of code
 func play_animation(animation:String):
 	$SmallImage.play(animation)
 	$BigImage.play(animation)
 	$FireImage.play(animation)
 
-# Unused, but I might use it in the future. Hopefully it's correct now.
+# Badguys use this
 func get_collision_bottom():
 	return global_position.y + $Collision.position.y + ($Collision.shape.size.y / 2)
