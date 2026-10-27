@@ -55,8 +55,8 @@ func start_level(level:PackedScene):
 	player_can_leave = true
 
 # Makes it so the player can leave at any time
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("menu_exit") and player_can_leave:
+func _input(event):
+	if event is InputEventKey and player_can_leave:
 		player_can_leave = false
 		appeared = false
 		visible = false
