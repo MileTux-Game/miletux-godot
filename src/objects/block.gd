@@ -70,24 +70,29 @@ func _on_dd_body_entered(body):
 		return
 	
 	if body.is_in_group("Player") and not empty and body.velocity.y <= 0:
-		if body.previous_position.y <= global_position.y:
+		if body.previous_position.y <= global_position.y or body.dead or body.is_on_floor():
 			return
 		
-		if not body.dead or not body.is_on_floor():
-			turn_empty("up_down")
-			
-			if hidden_block:
-				$Image.visible = true
-				$Collision.set_deferred("one_way_collision", false)
-				hidden_block_activated = true
-			
-			if body.global_position.x < global_position.x + 16:
-				spawn_item(ItemDirections.RIGHT)
-			elif body.global_position.x > global_position.x + 16:
-				spawn_item(ItemDirections.LEFT)
-			elif body.global_position.x == global_position.x + 16:
-				spawn_item(ItemDirections.RIGHT)
-	elif body.is_in_group("Player") and empty and body.velocity.y >= 0 and not body.dead:
+		body.velocity.y = 0
+		
+		turn_empty("up_down")
+		
+		if hidden_block:
+			$Image.visible = true
+			$Collision.set_deferred("one_way_collision", false)
+			hidden_block_activated = true
+		
+		if body.global_position.x < global_position.x + 16:
+			spawn_item(ItemDirections.RIGHT)
+		elif body.global_position.x > global_position.x + 16:
+			spawn_item(ItemDirections.LEFT)
+		elif body.global_position.x == global_position.x + 16:
+			spawn_item(ItemDirections.RIGHT)
+	elif body.is_in_group("Player") and empty and body.velocity.y <= 0 and not body.dead:
+		if body.previous_position.y <= global_position.y or body.dead or body.is_on_floor():
+			return
+		
+		body.velocity.y = 0
 		$BrickSound.play()
 	
 	if body.is_in_group("Badguy") and not empty:

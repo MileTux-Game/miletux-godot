@@ -309,14 +309,11 @@ func move():
 		if abs(velocity.x) < 5:
 			velocity.x = 0
 	
-	# There's a lot of colors here which has my brain confused. Sorry. This has something to do with ducking.
+	# Ducking
 	if not TuxManager.current_state == TuxManager.TuxStates.SMALL:
 		if not duck and is_on_floor() and Input.is_action_pressed("player_down"):
 			duck = true
-			
-			var old_height = $Collision.shape.size.y
 			change_collision_shape(false)
-			position.y += (old_height - $Collision.shape.size.y) / 2
 		elif duck and is_on_floor() and not Input.is_action_pressed("player_down"):
 			if not $CeilingDetector.has_overlapping_bodies():
 				duck = false
