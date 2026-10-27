@@ -79,14 +79,14 @@ func _on_tux_detector_body_entered(body):
 				body.death_fall(true)
 
 func _on_tld_body_entered(body):
-	if Global.paused:
+	if Global.paused or current_state == BadguyStates.DEAD:
 		return
 	
 	if body.is_in_group("Player"):
 		$Image.flip_h = false
 
 func _on_trd_body_entered(body):
-	if Global.paused:
+	if Global.paused or current_state == BadguyStates.DEAD:
 		return
 	
 	if body.is_in_group("Player"):

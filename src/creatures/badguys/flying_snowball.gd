@@ -27,8 +27,19 @@ var finished_starting_move = false # I dont even know what im doing anymore
 func _ready() -> void:
 	$TuxDetector.connect("area_entered", _on_tux_detector_area_entered)
 	$TuxDetector.connect("body_entered", _on_tux_detector_body_entered)
+	
+	$TuxLeftDetector.connect("body_entered", _on_tld_body_entered)
+	$TuxRightDetector.connect("body_entered", _on_trd_body_entered)
+	
 	$Image.play("flying")
+	
+	if direction == 1:
+		$Image.flip_h = true
+	else:
+		$Image.flip_h = false
+		
 	move()
+	
 	super()
 
 func _physics_process(delta: float) -> void:
@@ -46,11 +57,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 	else:
 		velocity.y = 0
-	
-	if direction == 1:
-		$Image.flip_h = true
-	else:
-		$Image.flip_h = false
 
 func flip_direction():
 	direction = -direction
@@ -141,6 +147,10 @@ func death_squish():
 	current_state = BadguyStates.DEAD
 	$TuxDetector.set_deferred("monitoring", false)
 	$TuxDetector.set_deferred("monitorable", false)
+	$TuxLeftDetector.set_deferred("monitoring", false)
+	$TuxLeftDetector.set_deferred("monitorable", false)
+	$TuxRightDetector.set_deferred("monitoring", false)
+	$TuxRightDetector.set_deferred("monitorable", false)
 	set_collision_layer_value(4, true)
 	set_collision_layer_value(3, false)
 	set_collision_mask_value(3, false)
@@ -162,14 +172,14 @@ func interact(tux):
 		death_squish()
 
 func _on_tld_body_entered(body):
-	if Global.paused:
+	if Global.paused or current_state == BadguyStates.DEAD:
 		return
 	
 	if body.is_in_group("Player"):
 		$Image.flip_h = false
 
 func _on_trd_body_entered(body):
-	if Global.paused:
+	if Global.paused or current_state == BadguyStates.DEAD:
 		return
 	
 	if body.is_in_group("Player"):

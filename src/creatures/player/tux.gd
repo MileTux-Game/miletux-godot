@@ -120,11 +120,11 @@ func _physics_process(delta: float) -> void:
 	# If Tux isn't dead and is not in a cutscene, move. If the game is not paused, allow Tux to shoot fire.
 	# Also Tux is allowed to do animate function if not dead
 	if not dead:
-		if not in_cutscene:
-			move() # Has a return just in case Global.paused is true, that's why there's no "if not Global.paused"
-			if not Global.paused:
-				shoot_fire()
+		move() # Has a return just in case Global.paused is true, that's why there's no "if not Global.paused"
 		animate()
+		
+		if not Global.paused:
+			shoot_fire()
 	
 	# Small check to make sure the correct star particles are emitting when Tux is damaged / grows while he
 	# has the star power-up
@@ -225,6 +225,9 @@ func move():
 		velocity.x = 0 # velocity.y is handled in physics process!
 		return
 	
+	if in_cutscene:
+		return
+	
 	# Set was_on_floor.
 	was_on_floor = is_on_floor()
 	
@@ -237,68 +240,72 @@ func move():
 	var duck_on_floor = duck and is_on_floor()
 	
 	# Later = Right now
-	if not duck_on_floor:
-		var move_direction = 0
-		
-		# Player moving left / right stuff! How fun
-		if Input.is_action_pressed("player_left") and not Input.is_action_pressed("player_right"):
-			move_direction = -1
-			TuxManager.direction = -1
-			change_image_direction(-1) # Just so there isn't 3 "flip_h" functions here
-		elif Input.is_action_pressed("player_right") and not Input.is_action_pressed("player_left"):
-			move_direction = 1
-			TuxManager.direction = 1
-			change_image_direction(1) # Also just so there isn't 3 "flip_h" functions here
-		
-		# If the move direction is not 0, do actual move stuff
-		if not move_direction == 0:
-			# If velocity.x is below instant_speed, apply instant_speed!
-			if abs(velocity.x) < instant_speed:
-				velocity.x = move_direction * instant_speed
+	if not in_cutscene:
+		if not duck_on_floor:
+			var move_direction = 0
 			
-			# Acceleration. Because this is code ported from the old HaxeFlixel version of this game,
-			# it needs an acceleration variable thing
-			var acceleration = (current_acceleration * get_physics_process_delta_time())
+			# Player moving left / right stuff! How fun
+			if Input.is_action_pressed("player_left") and not Input.is_action_pressed("player_right"):
+				move_direction = -1
+				TuxManager.direction = -1
+				change_image_direction(-1) # Just so there isn't 3 "flip_h" functions here
+			elif Input.is_action_pressed("player_right") and not Input.is_action_pressed("player_left"):
+				move_direction = 1
+				TuxManager.direction = 1
+				change_image_direction(1) # Also just so there isn't 3 "flip_h" functions here
 			
-			# Actually set the speed
-			velocity.x += move_direction * acceleration
-			
-			# Skidding stuff
-			if (velocity.x < 0 and move_direction > 0) or (velocity.x > 0 and move_direction < 0):
-				if is_on_floor():
-					if abs(velocity.x) > skid_speed:
-						velocity.x += move_direction * acceleration / 2.5
-						skid = true
+			# If the move direction is not 0, do actual move stuff
+			if not move_direction == 0:
+				# If velocity.x is below instant_speed, apply instant_speed!
+				if abs(velocity.x) < instant_speed:
+					velocity.x = move_direction * instant_speed
+				
+				# Acceleration. Because this is code ported from the old HaxeFlixel version of this game,
+				# it needs an acceleration variable thing
+				var acceleration = (current_acceleration * get_physics_process_delta_time())
+				
+				# Actually set the speed
+				velocity.x += move_direction * acceleration
+				
+				# Skidding stuff
+				if (velocity.x < 0 and move_direction > 0) or (velocity.x > 0 and move_direction < 0):
+					if is_on_floor():
+						if abs(velocity.x) > skid_speed:
+							velocity.x += move_direction * acceleration / 2.5
+							skid = true
+					else:
+						velocity.x += move_direction * acceleration / 2
+						skid = false
 				else:
-					velocity.x += move_direction * acceleration / 2
 					skid = false
-			else:
-				skid = false
-		else: # I'm tired boss
+			else: # I'm tired boss
+				if velocity.x > 0:
+					velocity.x -= current_acceleration * friction * get_physics_process_delta_time()
+				elif velocity.x < 0:
+					velocity.x += current_acceleration * friction * get_physics_process_delta_time()
+				
+				# Stop Tux if velocity is below 5
+				if abs(velocity.x) < 5:
+					velocity.x = 0
+					skid = false
+			
+			# Stop velocity from going above speed
+			velocity.x = clamp(velocity.x, -speed, speed)
+		else:
+			skid = false
+			
+			# Duplicated code :(
 			if velocity.x > 0:
 				velocity.x -= current_acceleration * friction * get_physics_process_delta_time()
 			elif velocity.x < 0:
 				velocity.x += current_acceleration * friction * get_physics_process_delta_time()
 			
-			# Stop Tux if velocity is below 5
+			# Duplicated code :(
 			if abs(velocity.x) < 5:
 				velocity.x = 0
-				skid = false
-		
-		# Stop velocity from going above speed
-		velocity.x = clamp(velocity.x, -speed, speed)
 	else:
-		skid = false
-		
-		# Duplicated code :(
-		if velocity.x > 0:
-			velocity.x -= current_acceleration * friction * get_physics_process_delta_time()
-		elif velocity.x < 0:
-			velocity.x += current_acceleration * friction * get_physics_process_delta_time()
-		
-		# Duplicated code :(
-		if abs(velocity.x) < 5:
-			velocity.x = 0
+		if auto_walk:
+			velocity.x = auto_walk_speed
 	
 	# Ducking
 	if not TuxManager.current_state == TuxManager.TuxStates.SMALL:
