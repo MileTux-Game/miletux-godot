@@ -85,12 +85,14 @@ func set_debug():
 	else:
 		print("debug: " + str(debug)) # there will be more stuff here soon
 
-func _process(_delta: float) -> void:
-	if debug:
-		if Input.is_action_just_pressed("save_debug"):
-			save_data()
-		if Input.is_action_just_pressed("load_debug"):
-			load_data()
+func _input(event: InputEvent) -> void:
+	if not debug:
+		return
+	
+	if event.is_action_pressed("save_debug"):
+		save_data()
+	elif event.is_action_pressed("load_debug"):
+		load_data()
 
 func save_data():
 	var data = {
