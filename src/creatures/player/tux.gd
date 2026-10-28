@@ -503,7 +503,11 @@ func shoot_fire():
 				fire_bullet.global_position.x = global_position.x - ($Collision.shape.size.x / 2)
 			else:
 				fire_bullet.global_position.x = global_position.x - ($Collision.shape.size.x / 2)
-			fire_bullet.global_position.y = global_position.y
+			
+			if duck:
+				fire_bullet.global_position.y = global_position.y + ($Collision.shape.size.y / 2)
+			else:
+				fire_bullet.global_position.y = global_position.y
 			fire_bullet.set_direction_speed(self)
 
 func _on_star_timer_timeout():
