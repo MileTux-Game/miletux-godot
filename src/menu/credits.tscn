@@ -28,20 +28,24 @@ bbcode_enabled = true
 text = "[font_size=32]- MileTux -[/font_size]
 Credits
 
-[font_size=24]Other People[/font_size]
-SuperTux Team (SuperTux Milestone 1 (v0.1.0-v0.1.4) and Milestone 2 (v0.3.0-v0.5.1) assets)
-Godot Developers (The Godot Engine, which was used to make this game)
-
-Godot is licensed under the MIT license.
-
 [font_size=24]MileTux Developers and Contributors[/font_size]
 Vaesea (Main developer)
 AnatolyStev (Some code)
+Tofi-Dev (Some code)
 FilipOK (Improved backgrounds)
+
+[font_size=24]Other People[/font_size]
+SuperTux Team (SuperTux Milestone 1 (v0.1.0-v0.1.4) and Milestone 2 (v0.3.0-v0.5.1) assets)
+Alzter and Eauix (Better Waterfall)
+Godot Developers (The Godot Engine, which was used to make this game)
+
+Godot is licensed under the MIT license. For more information, check the LICENSE_GODOT file.
 
 The other people mentioned were not involved with making this game.
 
-You made it to the end of the credits! Congratulations!
+
+
+Penny is waiting for you in a future version...
 
 Press SPACE to exit to the Main Menu."
 horizontal_alignment = 1

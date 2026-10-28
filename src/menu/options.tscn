@@ -59,12 +59,12 @@ text = "Level HUD"
 layout_mode = 2
 disabled = true
 button_pressed = false
-text = "Controls (Will be implemented in v0.1.7)"
+text = "Controls (Unimplemented)"
 
 [node name="DebugMode" parent="Panel/VBoxContainer" unique_id=894750276 instance=ExtResource("3_lwr04")]
 layout_mode = 2
 button_pressed = false
-text = "Debug (Read Github Wiki for info)"
+text = "Debug"
 
 [node name="Info" type="RichTextLabel" parent="." unique_id=838591650]
 offset_top = 384.0
