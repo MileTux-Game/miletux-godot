@@ -66,13 +66,19 @@ var debug:bool = false:
 var music_playing = true
 var sounds = true
 
+# Window
+var int_scaling = true:
+	set(value):
+		int_scaling = value
+		handle_int_scaling()
+
 ## Used instead of get_tree().paused in most cases because it allows animations to continue.
 ## [br]
 ## Don't use for worldmap stuff yet.
 var paused = false # TODO: Find out why Tux's animations stop when he reaches the goal, likely has something to do with this function.
 
 # Save file
-var save_version = 1
+var save_version = 2
 var save_path = "user://save.json"
 
 func _ready() -> void:
@@ -91,6 +97,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("load_debug"):
 		load_data()
 
+	if Input.is_action_just_pressed("set_integer_scaling"):
+		int_scaling = !int_scaling
+
 func save_data():
 	var data = {
 		"completed_levels": completed_levels,
@@ -105,7 +114,8 @@ func save_data():
 		"music_playing": music_playing,
 		"sounds": sounds,
 		"save_version": save_version,
-		"tux_state": tux_state
+		"tux_state": tux_state,
+		"int_scaling": int_scaling
 	}
 	
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -158,8 +168,16 @@ func load_data():
 			if data.has("tux_state"):
 				tux_state = data["tux_state"]
 				TuxManager.current_state = tux_state
+			if data.has("int_scaling"):
+				int_scaling = data["int_scaling"]
 			
 			print("Game loaded!")
+
+func handle_int_scaling():
+	if int_scaling:
+		get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+	else:
+		get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
