@@ -61,7 +61,7 @@ tile_set = ExtResource("3_owypa")
 collision_enabled = false
 
 [node name="Tux" parent="." unique_id=345015657 instance=ExtResource("4_1174p")]
-position = Vector2(79, 391)
+position = Vector2(-56, 377)
 
 [node name="Camera" parent="." unique_id=1917637807 instance=ExtResource("5_pti6y")]
 

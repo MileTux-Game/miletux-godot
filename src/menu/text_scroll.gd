@@ -14,6 +14,7 @@ class_name TextScroll
 func _process(delta: float) -> void:
 	global_position.y -= text_speed * delta
 	
+	# TODO: Move input stuff to _input function (v0.1.0 rc 1?)
 	if Input.is_action_pressed("player_down"):
 		text_speed += add_remove_speed
 	elif Input.is_action_pressed("player_up"):

@@ -87,14 +87,17 @@ func _ready() -> void:
 func set_debug():
 	if debug:
 		print("debug: " + str(debug))
-		OS.alert("Debug Mode is enabled!\nRead the GitHub repository's wiki for more information.", "Debug Mode")
+		OS.alert("Debug Mode is enabled!\nRead the GitHub repository's wiki for more information.\nTo turn it off, go to the Options menu!", "Debug Mode")
 	else:
 		print("debug: " + str(debug)) # there will be more stuff here soon
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("save_debug"):
+func _input(event: InputEvent) -> void:
+	if not debug:
+		return
+	
+	if event.is_action_pressed("save_debug"):
 		save_data()
-	if Input.is_action_just_pressed("load_debug"):
+	if event.is_action_pressed("load_debug"):
 		load_data()
 
 	if Input.is_action_just_pressed("set_integer_scaling"):
@@ -181,5 +184,5 @@ func handle_int_scaling():
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		Global.tux_state = TuxManager.current_state
+		tux_state = TuxManager.current_state
 		get_tree().quit()

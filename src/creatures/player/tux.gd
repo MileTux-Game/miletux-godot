@@ -124,7 +124,7 @@ func _physics_process(delta: float) -> void:
 		animate()
 		
 		if not Global.paused:
-			shoot_fire()
+			shoot_fire() # TODO: Move this to an "_input()" function
 	
 	# Small check to make sure the correct star particles are emitting when Tux is damaged / grows while he
 	# has the star power-up
@@ -503,7 +503,11 @@ func shoot_fire():
 				fire_bullet.global_position.x = global_position.x - ($Collision.shape.size.x / 2)
 			else:
 				fire_bullet.global_position.x = global_position.x - ($Collision.shape.size.x / 2)
-			fire_bullet.global_position.y = global_position.y
+			
+			if duck:
+				fire_bullet.global_position.y = global_position.y + ($Collision.shape.size.y / 2)
+			else:
+				fire_bullet.global_position.y = global_position.y
 			fire_bullet.set_direction_speed(self)
 
 func _on_star_timer_timeout():

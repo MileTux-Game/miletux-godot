@@ -1,5 +1,3 @@
-extends Button
-
 # MileTux
 
 # Option Button - A simple button that automatically adds / removes an icon
@@ -17,6 +15,14 @@ extends Button
 #
 # You should've received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
+
+extends Button
+
+func _ready() -> void:
+	if button_pressed:
+		set_button_icon(load("res://data/images/objects/coin/coin-0.png"))
+	else:
+		icon = null
 
 func _process(_delta: float) -> void:
 	if button_pressed:

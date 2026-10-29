@@ -14,6 +14,7 @@ z_index = 50
 script = ExtResource("1_jj2al")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1740898287]
+process_callback = 0
 limit_left = 0
 limit_top = 0
 
