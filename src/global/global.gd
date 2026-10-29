@@ -92,6 +92,16 @@ func set_debug():
 		print("debug: " + str(debug)) # there will be more stuff here soon
 
 func _input(event: InputEvent) -> void:
+	
+	# Not a debug feature.
+	if event.is_action_pressed("set_integer_scaling"):
+		int_scaling = !int_scaling
+		print("Integer Scaling is now: %s" % int_scaling)
+
+	if event.is_action_pressed("restore_window_size"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		get_window().size = Vector2(640,480)
+
 	if not debug:
 		return
 	
@@ -99,9 +109,6 @@ func _input(event: InputEvent) -> void:
 		save_data()
 	if event.is_action_pressed("load_debug"):
 		load_data()
-
-	if Input.is_action_just_pressed("set_integer_scaling"):
-		int_scaling = !int_scaling
 
 func save_data():
 	var data = {
