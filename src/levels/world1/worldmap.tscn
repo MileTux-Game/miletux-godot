@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b4d3uvi4q6rjv" path="res://src/levels/world1/levels/12-into_stars.tscn" id="14_3l541"]
 [ext_resource type="PackedScene" uid="uid://b1876r3f3xt5h" path="res://src/levels/world1/levels/13-above_arctic_skies.tscn" id="14_ee0jv"]
 [ext_resource type="PackedScene" uid="uid://bialsr4vjx0db" path="res://src/levels/world1/levels/14-entrance_cave.tscn" id="15_alcsj"]
+[ext_resource type="PackedScene" uid="uid://bl1rhkpg8ohx6" path="res://src/worldmap/objects/teleport_dot.tscn" id="21_q6vrj"]
 
 [node name="Worldmap" type="Node2D" unique_id=1039099861]
 z_index = 100
@@ -151,3 +152,13 @@ rock_section = 5
 [node name="Rock6" parent="." unique_id=474145805 instance=ExtResource("7_0cvpb")]
 position = Vector2(1312, 928)
 rock_section = 6
+
+[node name="TeleportDot" parent="." unique_id=950489298 instance=ExtResource("21_q6vrj")]
+position = Vector2(1469, 928)
+invisible = true
+worldmap_scene = "res://src/levels/world1/worldmap_cave.tscn"
+message = "Go to the cave?"
+
+[node name="WorldmapSpawnpoint" parent="." unique_id=1081432873 instance=ExtResource("4_ae63i")]
+position = Vector2(1440, 928)
+spawn_name = "back"

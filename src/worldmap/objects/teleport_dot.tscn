@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bl1rhkpg8ohx6"]
+
+[ext_resource type="SpriteFrames" uid="uid://c7tcevgmgljof" path="res://src/worldmap/objects/teleportdot.tres" id="1_rpins"]
+[ext_resource type="Script" uid="uid://8kml7u88npti" path="res://src/worldmap/objects/teleport_dot.gd" id="2_8x5jl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rpins"]
+radius = 9.0
+
+[node name="TeleportDot" type="AnimatedSprite2D" unique_id=950489298]
+z_index = 49
+sprite_frames = ExtResource("1_rpins")
+centered = false
+script = ExtResource("2_8x5jl")
+
+[node name="Detector" type="Area2D" parent="." unique_id=578413121]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector" unique_id=2065142938]
+position = Vector2(16.5, 16.5)
+shape = SubResource("CircleShape2D_rpins")

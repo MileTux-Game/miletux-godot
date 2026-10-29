@@ -1,5 +1,3 @@
-extends AnimatedSprite2D
-
 # MileTux
 
 # Worldmap Level - When Tux is over it and the player presses enter,
@@ -20,6 +18,8 @@ extends AnimatedSprite2D
 #
 # You should've received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
+
+extends AnimatedSprite2D
 
 ## Scene of your level
 @export var level_scene:PackedScene

@@ -60,12 +60,17 @@ func _physics_process(_delta: float) -> void:
 		
 		$Image.play("empty")
 
+# TODO: Update this code to the way Bonus Blocks work (Must be done before beta 2 release!)
+# Reason why I'm not doing it right now: I'm lazy :3
 func _on_dd_body_entered(body):
 	if not Engine.is_editor_hint():
 		if Global.paused:
 			return
 		
 		if body.is_in_group("Player") and not body.dead:
+			if body.dead:
+				return
+			
 			if empty_brick:
 				$BrickSound.play()
 				if TuxManager.current_state == TuxManager.TuxStates.SMALL:

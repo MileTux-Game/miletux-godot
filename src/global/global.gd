@@ -166,5 +166,5 @@ func load_data():
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		Global.tux_state = TuxManager.current_state
+		tux_state = TuxManager.current_state
 		get_tree().quit()

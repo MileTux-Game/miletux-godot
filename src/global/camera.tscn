@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c2jxmryc7qc83" path="res://src/global/camera.gd" id="1_xc1xy"]
 
 [node name="Camera" type="Camera2D" unique_id=1917637807]
+process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_bottom = 480

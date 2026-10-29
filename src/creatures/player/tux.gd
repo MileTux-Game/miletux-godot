@@ -124,7 +124,7 @@ func _physics_process(delta: float) -> void:
 		animate()
 		
 		if not Global.paused:
-			shoot_fire()
+			shoot_fire() # TODO: Move this to an "_input()" function
 	
 	# Small check to make sure the correct star particles are emitting when Tux is damaged / grows while he
 	# has the star power-up

@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c7tcevgmgljof"]
+
+[ext_resource type="Texture2D" uid="uid://cdo16rn5w68s6" path="res://data/images/worldmap/common/leveldot/teleporter/teleporterdot_1.png" id="1_jgnn2"]
+[ext_resource type="Texture2D" uid="uid://bemnfloiwpvbf" path="res://data/images/worldmap/common/leveldot/teleporter/teleporterdot_2.png" id="2_3sxyr"]
+[ext_resource type="Texture2D" uid="uid://c6sw0iq760rsa" path="res://data/images/worldmap/common/leveldot/teleporter/teleporterdot_3.png" id="3_nn5nj"]
+[ext_resource type="Texture2D" uid="uid://ow3p02xlr8ka" path="res://data/images/worldmap/common/leveldot/teleporter/teleporterdot_4.png" id="4_00gy6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jgnn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3sxyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nn5nj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_00gy6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]

@@ -1,6 +1,3 @@
-extends Node2D
-class_name Worldmap
-
 # MileTux
 
 # Worldmap - An RPG-like worldmap scene where the player enters different levels.
@@ -22,6 +19,9 @@ class_name Worldmap
 # You should've received a copy of the GNU General Public License along
 # with this program. If not, see <http://www.gnu.org/licenses/>.
 
+extends Node2D
+class_name Worldmap
+
 @export var license = "CC-BY-SA 4.0"
 @export var worldmap_width = 100
 @export var worldmap_height = 100
@@ -36,8 +36,6 @@ const hud = preload("res://src/hud/worldmap_hud.tscn")
 @onready var tux = $WorldmapTux
 
 func _ready() -> void:
-	var last_worldmap = Global.current_worldmap
-	
 	Global.current_worldmap = scene_file_path
 	
 	Global.width_of_worldmap = worldmap_width * Global.tile_size
@@ -58,19 +56,19 @@ func _ready() -> void:
 	levels = get_tree().get_nodes_in_group("Level")
 	rocks = get_tree().get_nodes_in_group("Rock")
 	
-	if not last_worldmap == scene_file_path:
-		tux.position = $MainWorldmapSpawnPoint.position
-	else:
-		if Global.use_spawn_point:
-			if get_spawn_point(Global.global_spawn_name):
-				if Global.current_worldmap == scene_file_path:
-					tux.position = get_spawn_point(Global.global_spawn_name).position
-				else:
-					set_tux_position_after_check()
-					
-			Global.use_spawn_point = false
+	# this seems a little weird but i'm tired
+	if Global.use_spawn_point:
+		if get_spawn_point(Global.global_spawn_name):
+			if Global.current_worldmap == scene_file_path:
+				tux.position = get_spawn_point(Global.global_spawn_name).position
+			else:
+				set_tux_position_after_check()
 		else:
 			set_tux_position_after_check()
+		
+		Global.use_spawn_point = false
+	else:
+		set_tux_position_after_check()
 	
 	check_rock_unlocks() # The Rock
 	check_levels_completed() # The Level
@@ -90,7 +88,7 @@ func check_rock_unlocks():
 		if section_completed(rock.rock_section):
 			rock.remove_rock()
 
-# you simply move the s!
+# TODO: rename
 func check_levels_completed():
 	for level in levels:
 		if level.level_scene.resource_path in Global.completed_levels:
@@ -106,10 +104,13 @@ func get_spawn_point(name_of_spawn:String):
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		Global.tux_state = TuxManager.current_state
+		
 		Global.tux_wm_x = tux.position.x
 		Global.tux_wm_y = tux.position.y
-		Global.tux_state = TuxManager.current_state
+		
 		Global.save_data()
+		
 		get_tree().quit()
 
 func set_tux_position_after_check():
