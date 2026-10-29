@@ -66,13 +66,19 @@ var debug:bool = false:
 var music_playing = true
 var sounds = true
 
+# Window
+var int_scaling = true:
+	set(value):
+		int_scaling = value
+		handle_int_scaling()
+
 ## Used instead of get_tree().paused in most cases because it allows animations to continue.
 ## [br]
 ## Don't use for worldmap stuff yet.
 var paused = false # TODO: Find out why Tux's animations stop when he reaches the goal, likely has something to do with this function.
 
 # Save file
-var save_version = 1
+var save_version = 2
 var save_path = "user://save.json"
 
 func _ready() -> void:
@@ -86,6 +92,19 @@ func set_debug():
 		print("debug: " + str(debug)) # there will be more stuff here soon
 
 func _input(event: InputEvent) -> void:
+	
+	# Not a debug feature.
+	if event.is_action_pressed("set_integer_scaling"):
+		int_scaling = !int_scaling
+		print("Integer Scaling is now: %s" % int_scaling)
+
+	if event.is_action_pressed("restore_window_size"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		get_window().size = Vector2(640,480)
+
+		# A hacky way of doing it, but it works for now.
+		get_window().position = (DisplayServer.screen_get_size() / 2) - get_window().size / 2
+
 	if not debug:
 		return
 	
@@ -108,7 +127,8 @@ func save_data():
 		"music_playing": music_playing,
 		"sounds": sounds,
 		"save_version": save_version,
-		"tux_state": tux_state
+		"tux_state": tux_state,
+		"int_scaling": int_scaling
 	}
 	
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -161,8 +181,16 @@ func load_data():
 			if data.has("tux_state"):
 				tux_state = data["tux_state"]
 				TuxManager.current_state = tux_state
+			if data.has("int_scaling"):
+				int_scaling = data["int_scaling"]
 			
 			print("Game loaded!")
+
+func handle_int_scaling():
+	if int_scaling:
+		get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_INTEGER
+	else:
+		get_window().content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
