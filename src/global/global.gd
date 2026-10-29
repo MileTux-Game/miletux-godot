@@ -101,6 +101,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restore_window_size"):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		get_window().size = Vector2(640,480)
+		get_window().position = (DisplayServer.screen_get_size() / 2) - get_window().size / 2
 
 	if not debug:
 		return
