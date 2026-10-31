@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dylcglwq01d0k"
-path="res://.godot/imported/nolok-statue.png-befeec1a949ad612d07b836d1caebc61.ctex"
+path="res://.godot/imported/nolok_statue.png-fde093abdbfee0a8742d68d78322bfb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/images/tiles/castle/nolok-statue.png"
-dest_files=["res://.godot/imported/nolok-statue.png-befeec1a949ad612d07b836d1caebc61.ctex"]
+source_file="res://data/images/tiles/castle/nolok_statue.png"
+dest_files=["res://.godot/imported/nolok_statue.png-fde093abdbfee0a8742d68d78322bfb3.ctex"]
 
 [params]
 

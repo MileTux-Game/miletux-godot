@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bchnm6aoeq583"
-path="res://.godot/imported/pole_sheet.png-cd41fce6bf02e048ab5c8e04ec4cc637.ctex"
+path="res://.godot/imported/goal.png-bd79cea717cad263f52b52e82d11358b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/images/tiles/goal/pole_sheet.png"
-dest_files=["res://.godot/imported/pole_sheet.png-cd41fce6bf02e048ab5c8e04ec4cc637.ctex"]
+source_file="res://data/images/tiles/goal/goal.png"
+dest_files=["res://.godot/imported/goal.png-bd79cea717cad263f52b52e82d11358b.ctex"]
 
 [params]
 
