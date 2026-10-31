@@ -53,7 +53,7 @@ texture = SubResource("GradientTexture2D_7h2yl")
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1675591946]
-position = Vector2(320, 102.00001)
+position = Vector2(320, 104.00001)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_pdh6n")
 

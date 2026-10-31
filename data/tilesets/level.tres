@@ -311,6 +311,7 @@ texture_region_size = Vector2i(32, 32)
 3:11/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5itdl"]
+resource_name = "Water"
 texture = ExtResource("5_s76xi")
 texture_region_size = Vector2i(32, 32)
 0:0/animation_separation = Vector2i(3, 0)
@@ -403,6 +404,7 @@ texture_region_size = Vector2i(32, 32)
 0:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be1y3"]
+resource_name = "Waterfall"
 texture = ExtResource("6_w2g50")
 texture_region_size = Vector2i(32, 32)
 1:0/animation_separation = Vector2i(5, 0)
@@ -603,6 +605,7 @@ texture_region_size = Vector2i(32, 32)
 3:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e54or"]
+resource_name = "Castle"
 texture = ExtResource("7_5itdl")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -651,6 +654,7 @@ texture_region_size = Vector2i(32, 32)
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mbtmk"]
+resource_name = "Nolok Statue"
 texture = ExtResource("8_be1y3")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
