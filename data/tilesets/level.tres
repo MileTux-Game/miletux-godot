@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b5i0cmjhoxtxv" path="res://data/images/tiles/water/water.png" id="5_s76xi"]
 [ext_resource type="Texture2D" uid="uid://cujpuxh4wjeky" path="res://data/images/tiles/waterfall/waterfall.png" id="6_w2g50"]
 [ext_resource type="Texture2D" uid="uid://bchnm6aoeq583" path="res://data/images/tiles/goal/pole_sheet.png" id="6_ylpwo"]
-[ext_resource type="Texture2D" uid="uid://b2yyqahglt8fm" path="res://data/images/tiles/castle/castle main.png" id="7_5itdl"]
+[ext_resource type="Texture2D" uid="uid://b2yyqahglt8fm" path="res://data/images/tiles/castle/main.png" id="7_5itdl"]
 [ext_resource type="Texture2D" uid="uid://chw18rs58xai1" path="res://data/images/tiles/misc/signs.png" id="7_lqmno"]
 [ext_resource type="Texture2D" uid="uid://dylcglwq01d0k" path="res://data/images/tiles/castle/nolok-statue.png" id="8_be1y3"]
 [ext_resource type="Texture2D" uid="uid://rv8ytytuiycu" path="res://data/images/tiles/goal/igloo.png" id="8_owuhm"]

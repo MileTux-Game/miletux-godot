@@ -5,8 +5,16 @@
 [ext_resource type="FontFile" uid="uid://boltmv8cfep8v" path="res://data/fonts/SuperTux-Medium.ttf" id="2_g2ne3"]
 [ext_resource type="StyleBox" uid="uid://c3uar07f52bxx" path="res://data/styles/main_menu_button.tres" id="3_o3lno"]
 [ext_resource type="Texture2D" uid="uid://d10xbtew46xgo" path="res://data/images/engine/menu/logo.png" id="3_pdh6n"]
-[ext_resource type="Texture2D" uid="uid://8yp5yjljgr3m" path="res://data/images/background/gradient.png" id="3_such8"]
 [ext_resource type="Texture2D" uid="uid://cge6771gxvuo" path="res://data/images/engine/menu/frame.png" id="4_such8"]
+
+[sub_resource type="Gradient" id="Gradient_pdh6n"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7h2yl"]
+gradient = SubResource("Gradient_pdh6n")
+width = 640
+height = 480
+fill_to = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfipr"]
 bg_color = Color(0.53999996, 0.7546667, 1, 0.59607846)
@@ -41,7 +49,7 @@ centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=122872558]
 modulate = Color(0.25, 0.25, 0.25, 1)
-texture = ExtResource("3_such8")
+texture = SubResource("GradientTexture2D_7h2yl")
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1675591946]
