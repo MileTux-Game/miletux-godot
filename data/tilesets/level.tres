@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b5i0cmjhoxtxv" path="res://data/images/tiles/water/water.png" id="5_s76xi"]
 [ext_resource type="Texture2D" uid="uid://cujpuxh4wjeky" path="res://data/images/tiles/waterfall/waterfall.png" id="6_w2g50"]
 [ext_resource type="Texture2D" uid="uid://bchnm6aoeq583" path="res://data/images/tiles/goal/pole_sheet.png" id="6_ylpwo"]
+[ext_resource type="Texture2D" uid="uid://b2yyqahglt8fm" path="res://data/images/tiles/castle/castle main.png" id="7_5itdl"]
 [ext_resource type="Texture2D" uid="uid://chw18rs58xai1" path="res://data/images/tiles/misc/signs.png" id="7_lqmno"]
+[ext_resource type="Texture2D" uid="uid://dylcglwq01d0k" path="res://data/images/tiles/castle/nolok-statue.png" id="8_be1y3"]
 [ext_resource type="Texture2D" uid="uid://rv8ytytuiycu" path="res://data/images/tiles/goal/igloo.png" id="8_owuhm"]
 [ext_resource type="Texture2D" uid="uid://bh46ir5c4cme8" path="res://data/images/tiles/water/water-transparent.png" id="9_mom4q"]
 [ext_resource type="Texture2D" uid="uid://urejqhri36kt" path="res://data/images/tiles/pipe/blue.png" id="10_wwl1m"]
@@ -600,6 +602,64 @@ texture_region_size = Vector2i(32, 32)
 3:1/animation_frame_3/duration = 1.0
 3:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e54or"]
+texture = ExtResource("7_5itdl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mbtmk"]
+texture = ExtResource("8_be1y3")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i5euq"]
 resource_name = "Misc Background"
 texture = ExtResource("3_nyqkm")
@@ -938,3 +998,5 @@ sources/10 = SubResource("TileSetAtlasSource_w2g50")
 sources/11 = SubResource("TileSetAtlasSource_4sh2f")
 sources/12 = SubResource("TileSetAtlasSource_5itdl")
 sources/13 = SubResource("TileSetAtlasSource_be1y3")
+sources/14 = SubResource("TileSetAtlasSource_e54or")
+sources/15 = SubResource("TileSetAtlasSource_mbtmk")
