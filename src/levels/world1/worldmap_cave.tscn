@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqm7b3kpsth0o" path="res://src/worldmap/objects/worldmap_level.tscn" id="5_myaig"]
 [ext_resource type="PackedScene" uid="uid://dpolqi2m6x8xg" path="res://src/levels/test/levels/test_level.tscn" id="6_e1baw"]
 [ext_resource type="PackedScene" uid="uid://ctvi4lqlrbjlr" path="res://src/worldmap/objects/rock.tscn" id="7_i0wg7"]
+[ext_resource type="PackedScene" uid="uid://ee210y0xnrcu" path="res://src/levels/world1/levels/15-under_ice.tscn" id="7_yovro"]
 [ext_resource type="PackedScene" uid="uid://didxsay0kc53" path="res://src/objects/collision.tscn" id="8_0g838"]
 [ext_resource type="PackedScene" uid="uid://bl1rhkpg8ohx6" path="res://src/worldmap/objects/teleport_dot.tscn" id="9_4uu6q"]
 
@@ -44,7 +45,7 @@ position = Vector2(-87, 199)
 position = Vector2(32, 178)
 
 [node name="Level2" parent="." unique_id=1249229157 instance=ExtResource("5_myaig")]
-position = Vector2(128, 224)
+position = Vector2(128, 256)
 level_scene = ExtResource("6_e1baw")
 level_name = "Test Level"
 
@@ -59,19 +60,19 @@ level_scene = ExtResource("6_e1baw")
 level_name = "Test Level"
 
 [node name="Level4" parent="." unique_id=1183825348 instance=ExtResource("5_myaig")]
-position = Vector2(64, 288)
+position = Vector2(256, 224)
 level_scene = ExtResource("6_e1baw")
 level_name = "Test Level"
 
 [node name="Level5" parent="." unique_id=496061077 instance=ExtResource("5_myaig")]
-position = Vector2(160, 288)
+position = Vector2(192, 288)
 level_scene = ExtResource("6_e1baw")
 level_name = "Test Level"
 
 [node name="Level6" parent="." unique_id=675991643 instance=ExtResource("5_myaig")]
-position = Vector2(96, 160)
-level_scene = ExtResource("6_e1baw")
-level_name = "Test Level"
+position = Vector2(64, 224)
+level_scene = ExtResource("7_yovro")
+level_name = "Under The Ice"
 
 [node name="Rock3" parent="." unique_id=1794535317 instance=ExtResource("7_i0wg7")]
 position = Vector2(352, 248)
