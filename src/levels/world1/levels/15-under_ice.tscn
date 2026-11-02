@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://br7q61r02s85" path="res://src/creatures/badguys/jumpy.tscn" id="16_f55y8"]
 [ext_resource type="PackedScene" uid="uid://bov86ofhwnhpq" path="res://src/objects/goal.tscn" id="17_5k0e7"]
 [ext_resource type="PackedScene" uid="uid://mltexe5nfxge" path="res://src/creatures/badguys/bouncing_snowball.tscn" id="18_5k0e7"]
+[ext_resource type="PackedScene" uid="uid://cgevbinru2wi2" path="res://src/objects/checkpoint.tscn" id="19_4d6ui"]
 
 [node name="UTI" type="Node2D" unique_id=131155539]
 script = ExtResource("1_cnc68")
@@ -273,3 +274,15 @@ position = Vector2(12384, 112)
 
 [node name="BouncingSnowball2" parent="." unique_id=1873416974 instance=ExtResource("18_5k0e7")]
 position = Vector2(12208, 192)
+
+[node name="Checkpoint" parent="." unique_id=1199848333 instance=ExtResource("19_4d6ui")]
+position = Vector2(8888, 304)
+
+[node name="Iceblock10" parent="." unique_id=309049416 instance=ExtResource("10_f1m5l")]
+position = Vector2(8592, 384)
+
+[node name="Iceblock11" parent="." unique_id=1551457205 instance=ExtResource("10_f1m5l")]
+position = Vector2(8784, 416)
+
+[node name="Iceblock12" parent="." unique_id=680597351 instance=ExtResource("10_f1m5l")]
+position = Vector2(9008, 384)
