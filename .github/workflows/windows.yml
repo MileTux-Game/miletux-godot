@@ -1,0 +1,33 @@
+name: Windows
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  
+  workflow_dispatch:
+
+jobs:
+  export_win:
+    runs-on: ubuntu-latest
+    name: Export Windows
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: export_win
+        id: export
+        uses: firebelley/godot-export@v8.0.0
+        with:
+          godot_executable_download_url: https://downloads.godotengine.org/?version=4.7.2&flavor=stable&slug=linux.x86_64.zip&platform=linux.64
+          godot_export_templates_download_url: https://downloads.godotengine.org/?version=4.7.2&flavor=stable&slug=export_templates.tpz&platform=templates
+          relative_project_path: ./
+          use_preset_export_path: true
+          archive_output: false
+          cache: true
+          presets_to_export: "win64"
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v5.0.0
+        with:
+          name: windows-x64
+          path: ${{steps.export.outputs.build_directory}}
