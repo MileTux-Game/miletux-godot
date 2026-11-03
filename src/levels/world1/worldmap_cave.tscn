@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cswm6fsuvvrar" path="res://src/worldmap/objects/worldmap_spawnpoint.tscn" id="4_yovro"]
 [ext_resource type="PackedScene" uid="uid://bqm7b3kpsth0o" path="res://src/worldmap/objects/worldmap_level.tscn" id="5_myaig"]
 [ext_resource type="PackedScene" uid="uid://dpolqi2m6x8xg" path="res://src/levels/test/levels/test_level.tscn" id="6_e1baw"]
+[ext_resource type="PackedScene" uid="uid://bobm0njjul2tx" path="res://src/levels/world1/levels/16-living_fridge.tscn" id="6_myaig"]
 [ext_resource type="PackedScene" uid="uid://ctvi4lqlrbjlr" path="res://src/worldmap/objects/rock.tscn" id="7_i0wg7"]
 [ext_resource type="PackedScene" uid="uid://ee210y0xnrcu" path="res://src/levels/world1/levels/15-under_ice.tscn" id="7_yovro"]
 [ext_resource type="PackedScene" uid="uid://didxsay0kc53" path="res://src/objects/collision.tscn" id="8_0g838"]
@@ -46,8 +47,8 @@ position = Vector2(32, 178)
 
 [node name="Level2" parent="." unique_id=1249229157 instance=ExtResource("5_myaig")]
 position = Vector2(128, 256)
-level_scene = ExtResource("6_e1baw")
-level_name = "Test Level"
+level_scene = ExtResource("6_myaig")
+level_name = "Living In A Fridge"
 
 [node name="Level3" parent="." unique_id=1440158541 instance=ExtResource("5_myaig")]
 position = Vector2(224, 256)
