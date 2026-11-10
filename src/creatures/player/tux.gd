@@ -321,25 +321,34 @@ func move():
 	
 	# Used very soon
 	var on_floor_or_coyote = is_on_floor() or not $CoyoteTimer.is_stopped()
+
+	# Jump buffer stuff.
+	var on_floor_buffered = not $JumpBufferTimer.is_stopped()
+	if Input.is_action_just_pressed("player_jump") and !on_floor_or_coyote:
+		$JumpBufferTimer.start()
 	
 	# Jumping!
-	if Input.is_action_just_pressed("player_jump") and on_floor_or_coyote:
+	if (Input.is_action_just_pressed("player_jump") or on_floor_buffered) and on_floor_or_coyote:
 		# SuperTux (at least the versions I've checked) don't actually
 		# use Tux's max jump height and minimum jump height for this
+		$JumpBufferTimer.stop()
+
 		if abs(velocity.x) > walk_speed:
 			velocity.y = -max_jump_height # aka 580
 		else:
 			velocity.y = -min_jump_height # aka 520
 		
 		# What sound should I play...
-		if TuxManager.current_state == TuxManager.TuxStates.SMALL:
+		if TuxManager.current_state == TuxManager.TuxStates.SMALL and on_floor_or_coyote:
 			$SmallJump.play()
 		else:
 			$BigJump.play()
 	
 	# Variable jump height
-	if velocity.y < 0 and Input.is_action_just_released("player_jump"):
+	if (velocity.y < 0 and Input.is_action_just_released("player_jump")):
 		velocity.y = 0
+
+		
 
 # Animating!
 func animate():
