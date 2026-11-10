@@ -71,7 +71,7 @@ func _ready() -> void:
 			$Clouds.global_position.x = $Camera.global_position.x
 
 func find_spawnpoint():
-	if not Global.checkpoint_reached or Global.coins <= 25:
+	if not Global.checkpoint_reached:
 		for spawn in get_tree().get_nodes_in_group("TuxSpawnpoint"):
 			if spawn.spawnpoint_name == main_spawnpoint:
 				$Tux.global_position = spawn.global_position + Vector2(13, -8)
