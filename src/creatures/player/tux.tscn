@@ -248,7 +248,7 @@ one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=844489262]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=500614835]
